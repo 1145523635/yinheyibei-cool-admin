@@ -16,8 +16,10 @@ export async function bootstrap(app: App) {
 	// 模块
 	const { eventLoop } = createModule(app);
 
+
 	// eps
 	createEps();
+
 
 	// 加载
 	Loading.set([eventLoop()]);

@@ -36,8 +36,8 @@
 						<cl-avatar :size="34" :src="user.info.headImg" />
 
 						<div class="det">
-							<el-text size="small" tag="p">{{ user.info.nickName }}</el-text>
-							<el-text size="small" type="info">{{ user.info.email }}</el-text>
+							<el-text size="small" tag="p">{{ user.info.nickname }}</el-text>
+							<el-text size="small" type="info">{{ user.info.mailbox }}</el-text>
 						</div>
 					</div>
 
@@ -70,6 +70,7 @@ import { ElMessageBox } from 'element-plus';
 import { useI18n } from 'vue-i18n';
 import RouteNav from './route-nav.vue';
 import AMenu from './amenu.vue';
+import { logout } from '/@/modules/api/user/index';
 
 const { router, service, browser } = useCool();
 const { user, app } = useBase();
@@ -86,7 +87,7 @@ async function onCommand(name: string) {
 				type: 'warning'
 			})
 				.then(async () => {
-					await service.base.comm.logout();
+					await logout();
 					user.logout();
 				})
 				.catch(() => null);

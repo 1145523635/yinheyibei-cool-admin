@@ -125,7 +125,7 @@ async function autoCreate() {
 			saveButtonText: t('一键添加')
 		},
 		items: [
-			await getEntity(),
+			// await getEntity(),
 			{
 				prop: 'list',
 				label: t('权限列表'),

@@ -62,6 +62,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
 		resolve: {
 			alias: {
 				'/@': toPath('./src'),
+				'@': toPath('./src'),
 				'/$': toPath('./src/modules'),
 				'/#': toPath('./src/plugins'),
 				'/~': toPath('./packages')

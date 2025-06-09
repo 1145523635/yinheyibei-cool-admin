@@ -23,42 +23,42 @@ const useDictStore = defineStore('dict', () => {
 
 	// 刷新
 	async function refresh(types?: Dict.Key[]) {
-		return service.dict.info
-			.data({
-				types: types?.filter(e => !isEmpty(e))
-			})
-			.then((res: Dict.Data) => {
-				const d = {};
-
-				for (const [i, arr] of Object.entries(res)) {
-					arr.forEach(e => {
-						e.label = e.name;
-
-						if (isEmpty(e.value)) {
-							e.value = e.id;
-						}
-					});
-
-					d[i] = deepTree(arr, 'desc');
-				}
-
-				assign(data, d);
-
-				if (isDev) {
-					console.group('字典数据');
-					console.log(toRaw(data));
-					console.groupEnd();
-				}
-
-				return data;
-			});
+		// return service.dict.info
+		// 	.data({
+		// 		types: types?.filter(e => !isEmpty(e))
+		// 	})
+		// 	.then((res: Dict.Data) => {
+		// 		const d = {};
+		//
+		// 		for (const [i, arr] of Object.entries(res)) {
+		// 			arr.forEach(e => {
+		// 				e.label = e.name;
+		//
+		// 				if (isEmpty(e.value)) {
+		// 					e.value = e.id;
+		// 				}
+		// 			});
+		//
+		// 			d[i] = deepTree(arr, 'desc');
+		// 		}
+		//
+		// 		assign(data, d);
+		//
+		// 		if (isDev) {
+		// 			console.group('字典数据');
+		// 			console.log(toRaw(data));
+		// 			console.groupEnd();
+		// 		}
+		//
+		// 		return data;
+		// 	});
 	}
 
 	return {
 		data,
 		get,
 		find,
-		refresh
+		// refresh
 	};
 });
 

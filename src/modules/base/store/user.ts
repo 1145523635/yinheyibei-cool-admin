@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import { storage } from '/@/cool/utils';
 import { service, router } from '/@/cool';
+import { getUserInfo } from '/@/modules/api/user/index';
 
 // 本地缓存
 const data = storage.info();
@@ -13,16 +14,16 @@ export const useUserStore = defineStore('user', function () {
 	// 设置标识
 	function setToken(data: {
 		token: string;
-		expire: number;
-		refreshToken: string;
-		refreshExpire: number;
+		// expire: number;
+		// refreshToken: string;
+		// refreshExpire: number;
 	}) {
 		// 请求的唯一标识
 		token.value = data.token;
-		storage.set('token', data.token, data.expire);
+		storage.set('token', data.token);
 
 		// 刷新 token 的唯一标识
-		storage.set('refreshToken', data.refreshToken, data.refreshExpire);
+		// storage.set('refreshToken', data.refreshToken, data.refreshExpire);
 	}
 
 	// 刷新标识
@@ -69,9 +70,10 @@ export const useUserStore = defineStore('user', function () {
 
 	// 获取用户信息
 	async function get() {
-		return service.base.comm.person().then(res => {
-			set(res);
-			return res;
+		getUserInfo().then(res => {
+			const data = res.data.user;
+			set(data);
+			return data;
 		});
 	}
 

@@ -153,13 +153,15 @@ export const useMenuStore = defineStore('menu', function () {
 		}
 
 		// 自定义菜单
+
 		if (!isEmpty(config.app.menu.list)) {
 			next({
 				menus: revDeepTree(config.app.menu.list || [])
 			});
 		} else {
+			console.log('获取菜单')
 			// 动态菜单
-			await service.base.comm.permmenu().then(next);
+			// await service.base.comm.permmenu().then(next);
 		}
 	}
 
